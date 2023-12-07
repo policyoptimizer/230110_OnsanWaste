@@ -5,18 +5,20 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import numpy as np
+import io
 
 # 제목
 st.title('오염 농도 예측 애플리케이션')
 
 # 구글 시트 데이터 로드
-@st.cache
+@st.cache(allow_output_mutation+True)
 def load_data():
    file_id = "1h2n63h2EDSA6207eF15Gk2SjsN8qjI9TrWclCMQF6X0"
    sheet_name = "Sheet1"
    url = f"https://docs.google.com/spreadsheets/d/{file_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
    res = requests.get(url)
-   df = pd.read_csv(pd.compat.StringIO(res.text))
+   # df = pd.read_csv(pd.compat.StringIO(res.text))
+   df = pd.read_csv(io.StringIO(res.text))
    # 데이터 처리 로직...
    return df
 
