@@ -1,23 +1,27 @@
 import streamlit as st
 import pandas as pd
-from sklearn.linear_model import LinearRegression
 import numpy as np
-
-# 데이터 및 모델 불러오기 (위에서 사용한 코드를 여기에 포함시킵니다)
-# 예: df = pd.read_csv('file.csv') 등
-
-# 스트림릿 제목 설정
-st.title('Pollution Dilution Volume Prediction')
-
-# 사용자 입력 받기
-toc = st.number_input('Pollute TOC', min_value=0)
-cod = st.number_input('Pollute COD', min_value=0)
-tn = st.number_input('Pollute T-N', min_value=0)
-vol = st.number_input('Pollute Vol', min_value=0)
-
-# 예측 버튼
-if st.button('Predict'):
+from sklearn.linear_model import LinearRegression
+​
+# 데이터와 모델 로드 (예시로 간단하게 처리)
+def load_data():
+   # 데이터 로딩 로직
+   return features, target
+​
+def train_model(features, target):
    model = LinearRegression()
-   model.fit(features, target)  # features와 target은 위에서 정의한 데이터셋을 사용합니다.
-   predicted_vol = model.predict([[toc, cod, tn, vol]])[0]
-   st.write(f'예측된 Dilute Volume: {predicted_vol}')
+   model.fit(features, target)
+   return model
+​
+# Streamlit 앱
+st.title('모델 훈련 및 예측')
+​
+if st.button('모델 훈련'):
+   features, target = load_data()
+   model = train_model(features, target)
+   st.write('모델 훈련 완료')
+​
+# 예측 로직 (모델이 이미 훈련되어 있어야 함)
+if st.button('예측'):
+   # 예측 로직 구현
+   pass
