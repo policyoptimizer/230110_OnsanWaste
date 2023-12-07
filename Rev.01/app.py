@@ -11,7 +11,7 @@ import io
 st.title('오염 농도 예측 애플리케이션')
 
 # 구글 시트 데이터 로드
-@st.cache(allow_output_mutation+True)
+@st.cache(allow_output_mutation=True)
 def load_data():
    file_id = "1h2n63h2EDSA6207eF15Gk2SjsN8qjI9TrWclCMQF6X0"
    sheet_name = "Sheet1"
